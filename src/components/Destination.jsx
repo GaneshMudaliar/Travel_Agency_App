@@ -1,59 +1,77 @@
-import React from 'react';
-import Place1 from "../assets/destination5.webp";
-import Place2 from "../assets/destination2.jpg";
-import Place3 from "../assets/destination1.jpg";
-import Place4 from "../assets/destination4.jpeg";
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
+const Destination = ({ places }) => {
+  const scrollRef = useRef(null);
 
+  const scroll = (direction) => {
+    const container = scrollRef.current;
+    const scrollAmount = 300;
 
-const places = [
-  {
-    id:1,
-    img: `${Place1}`,
-    title: "Varansi"
-  },
-  {
-    id:2,
-    img: `${Place2}`,
-    title: "Manali"
-  },
-  {
-    id:3,
-    img: `${Place3}`,
-    title: "Mumbai"
-    },
-  {
-    id:4,
-    img: `${Place4}`,
-    title: "Rameswaram"
-  }
-]
+    if (container) {
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
 
-const Destination = () => {
   return (
-    <div className='py-8 bg-gray-100'>
-      <div className='container mx-auto px-4'>
-        <h2 className='text-3xl font-bold text-center mb-8 '>Popular Destination</h2>
-        
+    <section className="py-12 bg-gray-100 relative">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
+          🌍 Popular Destinations
+        </h2>
 
-        <div 
-         className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-          {places.map((city) => (
-            
-            <div key={city.id} 
-             className='bg-white rounded-lg shadow-md overflow-hidden cursor-pointer '>
-               <img src={city.img} alt='img'
-                className="w-full h-48 object-cover transform transition duration-300 hover:scale-x-110" />
-              <div className='p-4'>
-                <h3 className='text-xl font-bold mb-2 '>{city.title}</h3>
-                <p className='text-gray-600'>{city.description}</p>
+        {/* Arrow Buttons */}
+        <div className="relative">
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-blue-500 hover:text-white transition"
+          >
+            <FaArrowLeft />
+          </button>
+
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-scroll space-x-6 px-4 pb-4 no-scrollbar"
+          >
+            {places.map((city) => (
+              <div
+                key={city.id}
+                className="min-w-[250px] bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow flex-shrink-0"
+              >
+                <img
+                  src={city.img}
+                  alt={city.title}
+                  className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                />
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold mb-1 text-gray-900">{city.title}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{city.description}</p>
+                  <p className="text-blue-600 font-semibold">
+                    ₹{city.price.toLocaleString()} – {city.duration} days
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-blue-500 hover:text-white transition"
+          >
+            <FaArrowRight />
+          </button>
         </div>
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
+
+Destination.propTypes = {
+  places: PropTypes.array.isRequired,
+};
 
 export default Destination;
