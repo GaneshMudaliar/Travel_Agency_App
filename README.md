@@ -1,8 +1,24 @@
-# React + Vite
+# 🧳 TravelMate - Your Smart Travel Companion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**TravelMate** is a sleek and responsive travel planning application built with **React** and **Tailwind CSS**. Easily browse destinations, view travel guides, book accommodations, and plan your trips all in one place.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+
+- 🌍 Browse and search popular travel destinations
+- 🛏️ Hotel and accommodation booking interface
+- 🗺️ Interactive maps and location details
+- 🧭 Travel itinerary planner
+- ⭐ User reviews and ratings
+- 📅 Date picker for trip planning
+- 🔍 Filters (region, category, budget)
+- 📱 Fully responsive with Tailwind CSS
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, React Router
+- **Styling:** Tailwind CSS
+- **Icons & UI:** Heroicons, React Icons
